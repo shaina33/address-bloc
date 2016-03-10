@@ -28,6 +28,8 @@ class AddressBook
     end
     
     def import_from_csv(file_name)
+      # csv must already be in alphabetical order
+      # and not include any spaces between items
         csv_text = File.read(file_name)
         csv = CSV.parse(csv_text, headers: true, skip_blanks: true)
         csv.each do |row|
