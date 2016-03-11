@@ -11,10 +11,11 @@ class MenuController
         puts "Main Menu - #{address_book.entries.count} entries"
         puts "1 - View all entries"
         puts "2 - Create an entry"
-        puts "3 - Search for an entry"
-        puts "4 - Import entries from a CSV"
-        puts "5 - View entry by entry #"
-        puts "6 - Exit"
+        puts "3 - Search for an entry by name"
+        puts "4 - Search for an entry by entry number"
+        puts "5 - Import new entries from a CSV"
+        puts "6 - Delete all entries"
+        puts "7 - Exit"
         print "Enter your selection: "
  
         selection = gets.to_i
@@ -34,14 +35,29 @@ class MenuController
             main_menu
         when 4
             system "clear"
-            read_csv
+            view_entry
             main_menu
         when 5
             system "clear"
-            view_entry
+            read_csv
             main_menu
         when 6
-            puts "Good-bye!"
+            system "clear"
+            puts "Warning! Are you sure you want to delete all entries?"
+            puts "Enter 'c' to confirm your selection"
+            choice = gets.chomp
+            if choice == "c"
+                address_book.purge_entries
+                system "clear"
+                puts "All address book entries deleted permanently."
+                puts "Time to meet some new people!"
+            else
+                system "clear"
+                puts "Deletion not confirmed. Please choose a new action."
+            end
+            main_menu
+        when 7
+            puts "Exited AddressBloc program."
             exit(0)
         else
             system "clear"

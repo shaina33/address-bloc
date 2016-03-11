@@ -63,4 +63,8 @@ class AddressBook
         end
         return nil
     end
+    
+    def purge_entries
+        @entries = []
+    end
 end

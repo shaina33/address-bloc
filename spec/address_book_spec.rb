@@ -174,4 +174,12 @@ RSpec.describe AddressBook do
         expect(entry).to be_nil
       end
     end
+    
+    describe "#purge_entries" do
+      it "deletes all entries" do
+        book.import_from_csv("entries.csv")
+        book.purge_entries
+        expect(book.entries).to be_empty
+      end
+    end
 end
